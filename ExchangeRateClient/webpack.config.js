@@ -28,7 +28,7 @@ var webpackConfig = {
     devtool: 'eval',
     devServer: {
         contentBase: './app',
-    },
+    }
 };
 
 module.exports = webpackConfig;

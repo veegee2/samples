@@ -22,16 +22,18 @@ function updateRate(pair) {
 }
 
 function updateRates() {
-    pairs.forEach(updateRate)
+    pairs.forEach(updateRate);
+    console.log('actual rates: ');
+    console.log(rates);
 }
 
 module.exports = {
-    init() {
+    init: function() {
         pairs.forEach(generateRate);
+
         setInterval(updateRates, UPDATE_INTERVAL);
     },
-
-    getCurrentRates() {
+    getCurrentRates: function() {
         return rates;
     }
 }
