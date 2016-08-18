@@ -23,8 +23,6 @@ function updateRate(pair) {
 
 function updateRates() {
     pairs.forEach(updateRate);
-    console.log('actual rates: ');
-    console.log(rates);
 }
 
 module.exports = {
