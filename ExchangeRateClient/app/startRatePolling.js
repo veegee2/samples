@@ -12,7 +12,7 @@ export default function startRatePolling($q, $scope, $timeout, $http) {
 			})
 			.error(function(res) {
 				console.log('Server error');
-				deferred.resolve();
+				deferred.reject();
 			});
 		return deferred.promise;
 	};
@@ -32,12 +32,13 @@ export default function startRatePolling($q, $scope, $timeout, $http) {
 
 	(function tick() {
 		getData().then((res) => {
-			if(res) {
-				vm.error = false;
-				vm.data = parseRatesObject(res.rates);
-			} else {
-				vm.error = true;
-			}
+			vm.error = false;
+			vm.data = parseRatesObject(res.rates);
+		})
+		.catch(() => {
+			vm.error = true;
+		})
+		.finally(() => {
 			cancelNextLoad();
 			$timeout(tick, interval);
 		});
